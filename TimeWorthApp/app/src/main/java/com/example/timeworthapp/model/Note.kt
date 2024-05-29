@@ -1,5 +1,6 @@
 package com.example.timeworthapp.model
 
+import android.graphics.Bitmap
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -10,5 +11,8 @@ data class Note (
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     val noteTitle: String,
-    val noteDesc: String
+    val notePrice: Float,
+    val noteType: String,
+    val noteDesc: String,
+    val notePhotoUri: String? = null
 ): Parcelable

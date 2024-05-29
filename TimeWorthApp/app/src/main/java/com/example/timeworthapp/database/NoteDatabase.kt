@@ -15,13 +15,11 @@ abstract class NoteDatabase: RoomDatabase() {
         @Volatile
         private var instance: NoteDatabase? = null
         private val LOCK = Any()
-
         operator fun invoke(context: Context) = instance ?: synchronized(LOCK) {
             instance ?: createDatabase(context).also {
                 instance = it
             }
         }
-
         private fun createDatabase(context: Context) =
             Room.databaseBuilder(
                 context.applicationContext,

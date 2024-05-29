@@ -6,8 +6,10 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.timeworthapp.R
 import com.example.timeworthapp.databinding.NoteLayoutBinding
 import com.example.timeworthapp.fragments.HomeFragmentDirections
+import com.bumptech.glide.Glide
 import com.example.timeworthapp.model.Note
 
 class NoteAdapter: RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
@@ -40,13 +42,21 @@ class NoteAdapter: RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         val currentNote = differ.currentList[position]
         holder.itemBinding.noteTitle.text = currentNote.noteTitle
+        holder.itemBinding.notePrice.text = currentNote.notePrice.toString()
+        holder.itemBinding.noteType.text = currentNote.noteType.toString()
         holder.itemBinding.noteDesc.text = currentNote.noteDesc
+
+        Glide.with(holder.itemBinding.root)
+            .load(currentNote.notePhotoUri)
+            .placeholder(R.drawable.placeholder_image)
+            .error(R.drawable.placeholder_image)
+            .centerCrop()
+            .into(holder.itemBinding.noteImage)
 
         holder.itemView.setOnClickListener {
             val direction = HomeFragmentDirections.actionHomeFragmentToEditNoteFragment(currentNote)
             it.findNavController().navigate(direction)
         }
-
     }
 
 }

@@ -50,6 +50,10 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
         binding.addNoteFab.setOnClickListener {
             it.findNavController().navigate(R.id.action_homeFragment_to_addNoteFragment)
         }
+
+        binding.getSummary.setOnClickListener {
+            it.findNavController().navigate(R.id.action_homeFragment_to_dataNoteFragment)
+        }
     }
 
     private fun updateUI(note: List<Note>?) {
@@ -105,10 +109,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
         homeBinding = null
     }
 
-    @Deprecated("Deprecated in Java")
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-
-        Log.d("CREATION","Menu created");
 
         menu.clear()
         menuInflater.inflate(R.menu.home_menu, menu)
@@ -116,6 +117,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
         val menuSearch = menu.findItem(R.id.searchMenu).actionView as SearchView
         menuSearch.isSubmitButtonEnabled = false
         menuSearch.setOnQueryTextListener(this)
+
     }
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {

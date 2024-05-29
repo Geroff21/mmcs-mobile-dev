@@ -1,5 +1,11 @@
 <resources>
-    <string name="app_name">TimeWorth</string>
+    <string name="app_name">Gallery</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment">TODO()</string>
+
+    <string-array name="planets_array">
+        <item>Доход</item>
+        <item>Расход</item>
+    </string-array>
+
 </resources>

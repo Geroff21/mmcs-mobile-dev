@@ -37,17 +37,99 @@
             android:fontFamily="@font/poppins"/>
 
         <EditText
+            android:id="@+id/editNotePrice"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:hint="Enter item price"
+            android:padding="12dp"
+            android:textSize="20sp"
+            android:inputType="numberDecimal|numberSigned"
+            android:layout_below="@id/editNoteTitle"
+            android:background="@drawable/b_border"
+            android:layout_marginTop="16dp"
+            android:maxLines="1"
+            android:fontFamily="@font/poppins"/>
+        <Spinner
+            android:id="@+id/editNoteType"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="12dp"
+            android:padding="12dp"
+            android:textSize="20sp"
+            android:fontFamily="@font/poppins"
+            android:gravity="top"
+            android:layout_below="@id/editNotePrice"
+            android:background="@drawable/b_border"
+            />
+
+        <EditText
             android:id="@+id/editNoteDesc"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="120dp"
             android:hint="Enter the description"
             android:gravity="top"
             android:padding="12dp"
             android:textSize="18sp"
             android:fontFamily="@font/poppins"
             android:background="@drawable/b_border"
-            android:layout_below="@id/editNoteTitle"
+            android:layout_below="@id/editNoteType"
             android:layout_marginTop="12dp" />
+
+        <LinearLayout
+            android:id="@+id/photoLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editNoteDesc"
+            android:weightSum="3"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
+
+            <!-- Button to select photo -->
+            <Button
+                android:id="@+id/selectPhotoButton"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:background="@drawable/b_border"
+                android:fontFamily="@font/poppins"
+                android:text="Select Photo"
+                android:layout_weight="1"
+                android:textColor="@color/black"
+                />
+
+            <!-- Button to take photo -->
+            <Button
+                android:id="@+id/takePhotoButton"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:background="@drawable/b_border"
+                android:fontFamily="@font/poppins"
+                android:text="Take Photo"
+                android:layout_weight="1"
+                android:textColor="@color/black"
+                android:layout_marginStart="12dp" />
+
+            <!-- Button to clear photo -->
+            <Button
+                android:id="@+id/clearPhotoButton"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="60dp"
+                android:background="@drawable/b_border"
+                android:fontFamily="@font/poppins"
+                android:text="Clear Photo"
+                android:textColor="@color/black"
+                android:layout_marginStart="12dp" />
+
+        </LinearLayout>
+
+        <!-- ImageView to display captured photo -->
+        <ImageView
+            android:id="@+id/photoImageView"
+            android:layout_width="match_parent"
+            android:layout_below="@id/photoLayout"
+            android:layout_height="200dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="Captured Photo" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/editNoteFab"
@@ -62,6 +144,8 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:contentDescription="editFab" />
+
+
 
     </RelativeLayout>
 </layout>
