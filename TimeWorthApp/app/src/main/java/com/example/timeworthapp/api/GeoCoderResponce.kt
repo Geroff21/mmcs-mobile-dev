@@ -1,4 +1,6 @@
 package com.example.timeworthapp.api
 
-class GeoCoderResponce {
-}
+data class GeoCoderResponse(
+    val lat: Double,
+    val lon: Double,
+)

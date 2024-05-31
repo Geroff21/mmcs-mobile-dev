@@ -1,8 +1,8 @@
 package com.example.timeworthapp.fragments
 
+import android.app.SearchManager
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -22,9 +23,11 @@ import com.example.timeworthapp.databinding.FragmentHomeBinding
 import com.example.timeworthapp.model.Note
 import com.example.timeworthapp.viewmodel.NoteViewModel
 
+
 class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextListener, MenuProvider {
 
     private var homeBinding: FragmentHomeBinding? = null
+    private var searchView: SearchView? = null
     private val binding get() = homeBinding!!
 
     private lateinit var notesViewModel : NoteViewModel
@@ -40,6 +43,8 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        clearSearchView()
 
         val menuHost: MenuHost = requireActivity()
         menuHost.addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
@@ -118,10 +123,27 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
         menuSearch.isSubmitButtonEnabled = false
         menuSearch.setOnQueryTextListener(this)
 
+        clearSearchView()
+
     }
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
         return false
+    }
+
+    private fun clearSearchView() {
+        searchView?.setQuery("", false)
+        searchView?.clearFocus()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        clearSearchView()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        clearSearchView()
     }
 
 }
